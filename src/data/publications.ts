@@ -7,6 +7,7 @@ export type Publication = {
   doi?: string;
   pdf?: string;
   citationUrl?: string;
+  image?: { src: string; alt: string };
 };
 
 // Published works transcribed from CV_Overleaf/publications.tex (September 2026).
