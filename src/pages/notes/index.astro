@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+
+const notes = (await getCollection('notes'))
+  .filter((entry) => !entry.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const formatDate = (date: Date) => new Intl.DateTimeFormat('en', { month: 'short', year: 'numeric', timeZone: 'UTC' }).format(date);
+---
+
+<BaseLayout title="Notes" description="Methodological notes and ideas by Jevan Luo." page="notes">
+  <div class="page-layout">
+    <Sidebar page="notes" />
+    <main class="page-main">
+      <div class="note-filter" aria-label="Filter notes">
+        <button type="button" data-category-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-category-filter="methods" aria-pressed="false">Methods</button>
+        <button type="button" data-category-filter="ideas" aria-pressed="false">Ideas</button>
+      </div>
+      {notes.map((entry) => (
+        <article class="note-row" data-note data-category={entry.data.category}>
+          <span class="note-date">{formatDate(entry.data.date)}</span>
+          <div class="note-row-body"><a class="note-title" href={`/notes/${entry.id}/`}>{entry.data.title}</a><div class="note-summary">{entry.data.summary}</div><span class="note-tag">{entry.data.category}</span></div>
+          <span class="note-arrow" aria-hidden="true">↗</span>
+        </article>
+      ))}
+      {notes.length === 0 && <p class="list-empty">Notes will appear here after they are published.</p>}
+      {notes.length > 0 && <p class="list-empty" id="notes-no-match" hidden>No notes match this topic.</p>}
+    </main>
+  </div>
+  <script>
+    const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-category-filter]')];
+    const entries = [...document.querySelectorAll<HTMLElement>('[data-note]')];
+    const noMatch = document.querySelector<HTMLElement>('#notes-no-match');
+    for (const button of buttons) button.addEventListener('click', () => {
+      const category = button.dataset.categoryFilter || 'all';
+      buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      let visible = 0;
+      entries.forEach((item) => {
+        item.hidden = category !== 'all' && item.dataset.category !== category;
+        if (!item.hidden) visible++;
+      });
+      if (noMatch) noMatch.hidden = visible > 0;
+    });
+  </script>
+</BaseLayout>

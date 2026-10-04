@@ -1,0 +1,10 @@
+---
+interface Props {
+  page: 'home' | 'research' | 'notes';
+}
+const { page } = Astro.props;
+---
+<nav class="rail" aria-label="Main navigation">
+  <a href="/research/" aria-current={page === 'research' ? 'page' : undefined}>Research</a>
+  <a href="/notes/" aria-current={page === 'notes' ? 'page' : undefined}>Notes</a>
+</nav>

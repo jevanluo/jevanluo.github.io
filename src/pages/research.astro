@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import { publications } from '../data/publications';
+
+const sorted = [...publications].sort((a, b) => b.year - a.year || a.title.localeCompare(b.title));
+const topics = [...new Set(sorted.flatMap((item) => item.topics))].sort();
+const years = [...new Set(sorted.map((item) => item.year))].sort((a, b) => b - a);
+---
+
+<BaseLayout title="Research" description="Publications and research by Jevan Luo." page="research">
+  <div class="page-layout">
+    <Sidebar page="research" />
+    <main class="page-main" id="research-list">
+      <div class="research-filters" aria-label="Filter publications">
+        <label>Topic <select id="research-topic" aria-label="Publication topic"><option value="all">All topics</option>{topics.map((topic) => <option value={topic}>{topic}</option>)}</select></label>
+        <label>Year <select id="research-year" aria-label="Publication year"><option value="all">All years</option>{years.map((year) => <option value={String(year)}>{year}</option>)}</select></label>
+        <span class="research-count" id="research-count" aria-live="polite">{sorted.length} {sorted.length === 1 ? 'entry' : 'entries'}</span>
+      </div>
+      {sorted.map((item) => (
+        <article class="publication" data-publication data-year={item.year} data-topics={item.topics.join('|')}>
+          <span class="publication-year">{item.year}</span>
+          <div><h2 class="publication-title">{item.title}</h2><div class="publication-meta">{item.authors} · {item.venue} · {item.topics.join(', ')}</div>
+            <div class="publication-links">
+              {item.doi && <a href={`https://doi.org/${item.doi}`} target="_blank" rel="noopener noreferrer">DOI ↗</a>}
+              {item.pdf && <a href={item.pdf} target="_blank" rel="noopener noreferrer">PDF ↗</a>}
+              {item.citationUrl && <a href={item.citationUrl} target="_blank" rel="noopener noreferrer">Citation ↗</a>}
+            </div>
+          </div>
+        </article>
+      ))}
+      {sorted.length === 0 && <p class="list-empty">Publications will appear here after they are added.</p>}
+      {sorted.length > 0 && <p class="list-empty" id="research-no-match" hidden>No publications match these filters.</p>}
+    </main>
+  </div>
+  <script>
+    const topicSelect = document.querySelector<HTMLSelectElement>('#research-topic');
+    const yearSelect = document.querySelector<HTMLSelectElement>('#research-year');
+    const entries = [...document.querySelectorAll<HTMLElement>('[data-publication]')];
+    const count = document.querySelector<HTMLElement>('#research-count');
+    const noMatch = document.querySelector<HTMLElement>('#research-no-match');
+    function filter() {
+      const topic = topicSelect?.value || 'all';
+      const year = yearSelect?.value || 'all';
+      let visible = 0;
+      for (const entry of entries) {
+        const topics = (entry.dataset.topics || '').split('|');
+        entry.hidden = (topic !== 'all' && !topics.includes(topic)) || (year !== 'all' && entry.dataset.year !== year);
+        if (!entry.hidden) visible++;
+      }
+      if (count) count.textContent = `${visible} ${visible === 1 ? 'entry' : 'entries'}`;
+      if (noMatch) noMatch.hidden = visible > 0;
+    }
+    topicSelect?.addEventListener('change', filter);
+    yearSelect?.addEventListener('change', filter);
+  </script>
+</BaseLayout>

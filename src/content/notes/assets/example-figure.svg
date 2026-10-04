@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 230" role="img" aria-label="Schematic illustration of two model summaries">
+  <rect width="600" height="230" fill="#f3f6f4"/>
+  <path d="M56 27 V176 H555" fill="none" stroke="#a9b8b8"/>
+  <path d="M56 105 H555 M56 61 H555 M56 145 H555" stroke="#dce5e2" stroke-dasharray="3 5"/>
+  <path d="M60 141 C125 127 155 74 226 88 S326 144 391 117 S490 66 548 80" fill="none" stroke="#497987" stroke-width="3"/>
+  <path d="M60 146 C125 134 160 80 226 99 S328 133 391 128 S488 76 548 90" fill="none" stroke="#9aacae" stroke-width="2.5" stroke-dasharray="6 5"/>
+  <text x="58" y="204" fill="#6d7c7e" font-size="12" font-family="sans-serif">Example cases</text>
+  <line x1="389" y1="198" x2="413" y2="198" stroke="#497987" stroke-width="3"/>
+  <text x="420" y="202" fill="#506165" font-size="11" font-family="sans-serif">Model A</text>
+  <line x1="487" y1="198" x2="511" y2="198" stroke="#9aacae" stroke-width="2.5" stroke-dasharray="6 5"/>
+  <text x="518" y="202" fill="#506165" font-size="11" font-family="sans-serif">Model B</text>
+</svg>

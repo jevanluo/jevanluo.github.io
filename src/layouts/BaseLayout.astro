@@ -1,0 +1,59 @@
+---
+import '../styles/global.css';
+import 'katex/dist/katex.min.css';
+import { site as siteData } from '../data/site';
+
+interface Props {
+  title: string;
+  description?: string;
+  page: 'home' | 'research' | 'notes';
+}
+
+const { title, description = 'Research and methodological notes by Jevan Luo.', page } = Astro.props;
+const isHome = page === 'home';
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title === siteData.name ? title : `${title} · ${siteData.name}`}</title>
+  </head>
+  <body>
+    <div class:list={['site', isHome ? 'site-home' : 'site-inner']} id="site">
+      <header class="topbar">
+        <a class="top-portrait" href="/" aria-label="Jevan Luo, home">
+          <img src="/images/portrait.png" alt="" width="44" height="44" />
+        </a>
+        <span class="top-name">Jevan Luo</span>
+        <nav class="top-links" aria-label="Main navigation">
+          <a href="/research/" aria-current={page === 'research' ? 'page' : undefined}>Research</a>
+          <a href="/notes/" aria-current={page === 'notes' ? 'page' : undefined}>Notes</a>
+        </nav>
+      </header>
+      <slot />
+    </div>
+    {
+      isHome && (
+        <script>
+          const shell = document.querySelector('.site-home');
+          const cover = shell?.querySelector('.cover');
+          if (shell && cover) {
+            const sync = () => {
+              const coverBottom = cover.getBoundingClientRect().bottom;
+              shell.classList.toggle('is-scrolled', coverBottom <= 64);
+            };
+            addEventListener('scroll', sync, { passive: true });
+            addEventListener('resize', sync);
+            sync();
+          }
+        </script>
+      )
+    }
+  </body>
+</html>
