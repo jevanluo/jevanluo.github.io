@@ -41,10 +41,7 @@ const groups = years.map((year) => ({ year, items: sorted.filter((item) => item.
                       {item.doi && <a href={`https://doi.org/${item.doi}`} target="_blank" rel="noopener noreferrer">DOI ↗</a>}
                       {item.pdf && <a href={item.pdf} target="_blank" rel="noopener noreferrer">PDF ↗</a>}
                       {item.resources?.map((resource) => <a href={resource.url} target="_blank" rel="noopener noreferrer">{resource.label} ↗</a>)}
-                      {citation && <>
-                        <button type="button" data-copy-citation="APA" data-copy-text={citation.apa} aria-label="Copy APA citation" title="Copy APA citation">APA</button>
-                        <button type="button" data-copy-citation="BibTeX" data-copy-text={citation.bibtex} aria-label="Copy BibTeX citation" title="Copy BibTeX citation">BibTeX</button>
-                      </>}
+                      {citation && <button type="button" data-open-citation data-title={item.title} data-apa={citation.apa} data-bibtex={citation.bibtex} aria-label={`View citation for ${item.title}`}>Cite</button>}
                     </div>
                   </div>
                 </article>
@@ -55,9 +52,32 @@ const groups = years.map((year) => ({ year, items: sorted.filter((item) => item.
       ))}
       {sorted.length === 0 && <p class="list-empty">Publications will appear here after they are added.</p>}
       {sorted.length > 0 && <p class="list-empty" id="research-no-match" hidden>No publications match these filters.</p>}
-      <span class="sr-only" id="citation-copy-status" role="status" aria-live="polite"></span>
     </main>
   </div>
+  <dialog class="citation-dialog" id="citation-dialog" aria-labelledby="citation-dialog-title">
+    <div class="citation-dialog-head">
+      <div>
+        <span class="citation-dialog-eyebrow">Citation</span>
+        <h2 id="citation-dialog-title"></h2>
+      </div>
+      <button class="citation-dialog-close" type="button" data-close-citation aria-label="Close citation window">×</button>
+    </div>
+    <section class="citation-dialog-format" aria-labelledby="citation-apa-heading">
+      <div class="citation-dialog-format-head">
+        <h3 id="citation-apa-heading">APA</h3>
+        <button type="button" data-copy-format="apa">Copy APA</button>
+      </div>
+      <p data-citation-content="apa"></p>
+    </section>
+    <section class="citation-dialog-format" aria-labelledby="citation-bibtex-heading">
+      <div class="citation-dialog-format-head">
+        <h3 id="citation-bibtex-heading">BibTeX</h3>
+        <button type="button" data-copy-format="bibtex">Copy BibTeX</button>
+      </div>
+      <pre data-citation-content="bibtex"></pre>
+    </section>
+    <p class="citation-copy-feedback" id="citation-copy-status" role="status" aria-live="polite"></p>
+  </dialog>
   <script>
     const topicSelect = document.querySelector<HTMLSelectElement>('#research-topic');
     const yearSelect = document.querySelector<HTMLSelectElement>('#research-year');
@@ -82,21 +102,38 @@ const groups = years.map((year) => ({ year, items: sorted.filter((item) => item.
     }
     topicSelect?.addEventListener('change', filter);
     yearSelect?.addEventListener('change', filter);
+    const dialog = document.querySelector<HTMLDialogElement>('#citation-dialog');
+    const dialogTitle = document.querySelector<HTMLElement>('#citation-dialog-title');
+    const apaContent = dialog?.querySelector<HTMLElement>('[data-citation-content="apa"]');
+    const bibtexContent = dialog?.querySelector<HTMLElement>('[data-citation-content="bibtex"]');
     const copyStatus = document.querySelector<HTMLElement>('#citation-copy-status');
-    document.querySelectorAll<HTMLButtonElement>('[data-copy-citation]').forEach((button) => {
+    document.querySelectorAll<HTMLButtonElement>('[data-open-citation]').forEach((button) => {
+      button.addEventListener('click', () => {
+        if (!dialog || !dialogTitle || !apaContent || !bibtexContent) return;
+        dialogTitle.textContent = button.dataset.title || '';
+        apaContent.textContent = button.dataset.apa || '';
+        bibtexContent.textContent = button.dataset.bibtex || '';
+        if (copyStatus) copyStatus.textContent = '';
+        dialog.showModal();
+      });
+    });
+    dialog?.querySelector<HTMLButtonElement>('[data-close-citation]')?.addEventListener('click', () => dialog.close());
+    dialog?.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+    dialog?.querySelectorAll<HTMLButtonElement>('[data-copy-format]').forEach((button) => {
       button.addEventListener('click', async () => {
-        const text = button.dataset.copyText;
-        const format = button.dataset.copyCitation || 'Citation';
+        const format = button.dataset.copyFormat;
+        const text = format === 'apa' ? apaContent?.textContent : bibtexContent?.textContent;
         if (!text) return;
+        const label = format === 'apa' ? 'APA' : 'BibTeX';
         try {
           await navigator.clipboard.writeText(text);
-          button.textContent = `${format} ✓`;
-          if (copyStatus) copyStatus.textContent = `${format} citation copied to clipboard.`;
+          button.textContent = 'Copied ✓';
+          if (copyStatus) copyStatus.textContent = `${label} citation copied to clipboard.`;
         } catch {
-          button.textContent = `Retry ${format}`;
-          if (copyStatus) copyStatus.textContent = `Could not copy ${format} citation.`;
+          button.textContent = `Retry ${label}`;
+          if (copyStatus) copyStatus.textContent = `Could not copy ${label} citation.`;
         }
-        window.setTimeout(() => { button.textContent = format; }, 1800);
+        window.setTimeout(() => { button.textContent = `Copy ${label}`; }, 1800);
       });
     });
   </script>
