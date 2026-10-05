@@ -41,20 +41,11 @@ const groups = years.map((year) => ({ year, items: sorted.filter((item) => item.
                       {item.doi && <a href={`https://doi.org/${item.doi}`} target="_blank" rel="noopener noreferrer">DOI ↗</a>}
                       {item.pdf && <a href={item.pdf} target="_blank" rel="noopener noreferrer">PDF ↗</a>}
                       {item.resources?.map((resource) => <a href={resource.url} target="_blank" rel="noopener noreferrer">{resource.label} ↗</a>)}
+                      {citation && <>
+                        <button type="button" data-copy-citation="APA" data-copy-text={citation.apa} aria-label="Copy APA citation" title="Copy APA citation">APA</button>
+                        <button type="button" data-copy-citation="BibTeX" data-copy-text={citation.bibtex} aria-label="Copy BibTeX citation" title="Copy BibTeX citation">BibTeX</button>
+                      </>}
                     </div>
-                    {citation && <details class="publication-citation">
-                      <summary>Cite <span aria-hidden="true">⌄</span></summary>
-                      <div class="citation-panel">
-                        <div class="citation-format">
-                          <div class="citation-format-head"><span>APA</span><button type="button" data-copy-citation>Copy</button></div>
-                          <p data-citation-text>{citation.apa}</p>
-                        </div>
-                        <div class="citation-format">
-                          <div class="citation-format-head"><span>BibTeX</span><button type="button" data-copy-citation>Copy</button></div>
-                          <pre data-citation-text>{citation.bibtex}</pre>
-                        </div>
-                      </div>
-                    </details>}
                   </div>
                 </article>
               );
@@ -64,6 +55,7 @@ const groups = years.map((year) => ({ year, items: sorted.filter((item) => item.
       ))}
       {sorted.length === 0 && <p class="list-empty">Publications will appear here after they are added.</p>}
       {sorted.length > 0 && <p class="list-empty" id="research-no-match" hidden>No publications match these filters.</p>}
+      <span class="sr-only" id="citation-copy-status" role="status" aria-live="polite"></span>
     </main>
   </div>
   <script>
@@ -90,17 +82,21 @@ const groups = years.map((year) => ({ year, items: sorted.filter((item) => item.
     }
     topicSelect?.addEventListener('change', filter);
     yearSelect?.addEventListener('change', filter);
+    const copyStatus = document.querySelector<HTMLElement>('#citation-copy-status');
     document.querySelectorAll<HTMLButtonElement>('[data-copy-citation]').forEach((button) => {
       button.addEventListener('click', async () => {
-        const text = button.closest('.citation-format')?.querySelector<HTMLElement>('[data-citation-text]')?.textContent;
+        const text = button.dataset.copyText;
+        const format = button.dataset.copyCitation || 'Citation';
         if (!text) return;
         try {
           await navigator.clipboard.writeText(text);
-          button.textContent = 'Copied';
+          button.textContent = `${format} ✓`;
+          if (copyStatus) copyStatus.textContent = `${format} citation copied to clipboard.`;
         } catch {
-          button.textContent = 'Copy failed';
+          button.textContent = `Retry ${format}`;
+          if (copyStatus) copyStatus.textContent = `Could not copy ${format} citation.`;
         }
-        window.setTimeout(() => { button.textContent = 'Copy'; }, 1800);
+        window.setTimeout(() => { button.textContent = format; }, 1800);
       });
     });
   </script>
