@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Sidebar from '../components/Sidebar.astro';
 import { publications } from '../data/publications';
+import { citations } from '../data/citations';
 
 const sorted = [...publications].sort((a, b) => b.year - a.year);
 const topics = [...new Set(sorted.flatMap((item) => item.topics))].sort();
@@ -25,6 +26,7 @@ const groups = years.map((year) => ({ year, items: sorted.filter((item) => item.
           <div class="publication-list">
             {items.map((item) => {
               const authorParts = item.authors.split('Luo, J.');
+              const citation = item.doi ? citations[item.doi] : undefined;
               return (
                 <article class:list={['publication', { 'has-image': Boolean(item.image) }]} data-publication data-year={item.year} data-topics={item.topics.join('|')}>
                   {item.image && <img class="publication-image" src={item.image.src} alt={item.image.alt} width="148" height="100" loading="lazy" decoding="async" />}
@@ -38,8 +40,21 @@ const groups = years.map((year) => ({ year, items: sorted.filter((item) => item.
                     <div class="publication-links">
                       {item.doi && <a href={`https://doi.org/${item.doi}`} target="_blank" rel="noopener noreferrer">DOI ↗</a>}
                       {item.pdf && <a href={item.pdf} target="_blank" rel="noopener noreferrer">PDF ↗</a>}
-                      {item.citationUrl && <a href={item.citationUrl} target="_blank" rel="noopener noreferrer">Citation ↗</a>}
+                      {item.resources?.map((resource) => <a href={resource.url} target="_blank" rel="noopener noreferrer">{resource.label} ↗</a>)}
                     </div>
+                    {citation && <details class="publication-citation">
+                      <summary>Cite <span aria-hidden="true">⌄</span></summary>
+                      <div class="citation-panel">
+                        <div class="citation-format">
+                          <div class="citation-format-head"><span>APA</span><button type="button" data-copy-citation>Copy</button></div>
+                          <p data-citation-text>{citation.apa}</p>
+                        </div>
+                        <div class="citation-format">
+                          <div class="citation-format-head"><span>BibTeX</span><button type="button" data-copy-citation>Copy</button></div>
+                          <pre data-citation-text>{citation.bibtex}</pre>
+                        </div>
+                      </div>
+                    </details>}
                   </div>
                 </article>
               );
@@ -75,5 +90,18 @@ const groups = years.map((year) => ({ year, items: sorted.filter((item) => item.
     }
     topicSelect?.addEventListener('change', filter);
     yearSelect?.addEventListener('change', filter);
+    document.querySelectorAll<HTMLButtonElement>('[data-copy-citation]').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const text = button.closest('.citation-format')?.querySelector<HTMLElement>('[data-citation-text]')?.textContent;
+        if (!text) return;
+        try {
+          await navigator.clipboard.writeText(text);
+          button.textContent = 'Copied';
+        } catch {
+          button.textContent = 'Copy failed';
+        }
+        window.setTimeout(() => { button.textContent = 'Copy'; }, 1800);
+      });
+    });
   </script>
 </BaseLayout>

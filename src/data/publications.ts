@@ -6,7 +6,7 @@ export type Publication = {
   topics: string[];
   doi?: string;
   pdf?: string;
-  citationUrl?: string;
+  resources?: { label: string; url: string }[];
   image?: { src: string; alt: string };
 };
 
@@ -39,6 +39,7 @@ export const publications: Publication[] = [
     year: 2025,
     topics: ['Collaboration networks'],
     doi: '10.1017/cts.2025.10124',
+    pdf: 'https://www.cambridge.org/core/services/aop-cambridge-core/content/view/A1B2BFE844618D1AFFE69E6A99FBEBF3/S2059866125101246a.pdf/the-power-of-social-talk-a-longitudinal-network-analysis-of-conversations-in-fostering-interdisciplinary-collaboration.pdf',
     image: { src: '/images/publications/social-talk.jpg', alt: 'Conceptual illustration of a collaborative research meeting table' },
   },
   {
@@ -48,6 +49,7 @@ export const publications: Publication[] = [
     year: 2025,
     topics: ['Collaboration networks'],
     doi: '10.3390/app15116252',
+    pdf: 'https://mdpi-res.com/d_attachment/applsci/applsci-15-06252/article_deploy/applsci-15-06252-v2.pdf?version=1749114439',
     image: { src: '/images/publications/mhealth-nexus.jpg', alt: 'Conceptual illustration of a phone and connected health research topics' },
   },
   {
@@ -98,7 +100,7 @@ export const publications: Publication[] = [
   {
     title: 'From data to story: Leveraging LLM-powered chatbots for learning business data analytics and visualisation in Mathematica',
     authors: 'Du, F., Luo, J., & Wang, S. X.',
-    venue: 'In Effective Practices in AI Literacy Education, pp. 101–110 (book chapter)',
+    venue: 'In Effective Practices in AI Literacy Education, pp. 101–109 (book chapter)',
     year: 2024,
     topics: ['AI in education'],
     doi: '10.1108/978-1-83608-852-320241011',
@@ -111,6 +113,7 @@ export const publications: Publication[] = [
     year: 2023,
     topics: ['Psychometrics'],
     doi: '10.3390/psych5020027',
+    pdf: 'https://mdpi-res.com/d_attachment/psych/psych-05-00027/article_deploy/psych-05-00027.pdf',
     image: { src: '/images/publications/bayesian-lsirm.jpg', alt: 'Conceptual illustration of a three-dimensional point map and probability contours' },
   },
   {
@@ -120,6 +123,7 @@ export const publications: Publication[] = [
     year: 2023,
     topics: ['Psychometrics'],
     doi: '10.1177/00131644221140906',
+    pdf: 'https://escholarship.org/content/qt9r7122hv/qt9r7122hv.pdf',
     image: { src: '/images/publications/rating-scale-model.jpg', alt: 'Conceptual illustration of layered rating scales and geometric planes' },
   },
   {
@@ -129,6 +133,7 @@ export const publications: Publication[] = [
     year: 2022,
     topics: ['Collaboration networks'],
     doi: '10.1371/journal.pone.0273899',
+    pdf: 'https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0273899&type=printable',
     image: { src: '/images/publications/psychological-safety-networks.jpg', alt: 'Conceptual illustration of connections across a team meeting table' },
   },
   {
@@ -138,6 +143,7 @@ export const publications: Publication[] = [
     year: 2021,
     topics: ['Collaboration networks'],
     doi: '10.1017/cts.2021.859',
+    pdf: 'https://www.cambridge.org/core/services/aop-cambridge-core/content/view/7F5DFDB03531155D366A9855589E0979/S2059866121008591a.pdf/div-class-title-fostering-interdisciplinary-collaboration-a-longitudinal-social-network-analysis-of-the-nih-mhealth-training-institutes-div.pdf',
     image: { src: '/images/publications/mhealth-collaboration.jpg', alt: 'Conceptual illustration of mHealth collaboration networks over time' },
   },
   {

@@ -82,6 +82,18 @@ a:focus-visible, button:focus-visible, select:focus-visible { outline: 2px solid
 .publication-links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
 .publication-links a { color: var(--muted); font-size: 10px; line-height: 1; border: 1px solid #cbd5d4; border-radius: 3px; padding: 5px 7px; }
 .publication-links a:hover { color: #244f5a; border-color: var(--accent); }
+.publication-citation { margin-top: 9px; }
+.publication-citation summary { width: max-content; color: var(--muted); font-size: 10px; cursor: pointer; list-style: none; }
+.publication-citation summary::-webkit-details-marker { display: none; }
+.publication-citation summary span { display: inline-block; margin-left: 2px; transition: transform .15s ease; }
+.publication-citation[open] summary span { transform: rotate(180deg); }
+.publication-citation summary:hover, .citation-format-head button:hover { color: var(--accent); }
+.citation-panel { margin-top: 10px; border-top: 1px solid var(--line); }
+.citation-format { padding: 11px 0; border-bottom: 1px solid var(--line); }
+.citation-format-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; color: var(--quiet); font-size: 10px; font-weight: 650; }
+.citation-format-head button { border: 0; background: none; color: var(--muted); font: inherit; font-weight: 400; cursor: pointer; padding: 2px 0 2px 8px; }
+.citation-format p, .citation-format pre { margin: 5px 0 0; color: var(--muted); font: 11px/1.65 ui-sans-serif, system-ui, sans-serif; overflow-wrap: anywhere; }
+.citation-format pre { white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; }
 .publication-image-note { color: var(--quiet); font-size: 10px; line-height: 1.5; margin: 11px 0 -7px; text-align: right; }
 .list-empty { color: var(--muted); font-size: 12px; line-height: 1.6; padding: 25px 0; margin: 0; }
 
