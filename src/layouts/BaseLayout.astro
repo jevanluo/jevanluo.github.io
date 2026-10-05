@@ -6,10 +6,10 @@ import { site as siteData } from '../data/site';
 interface Props {
   title: string;
   description?: string;
-  page: 'home' | 'research' | 'notes';
+  page: 'home' | 'publications' | 'notes';
 }
 
-const { title, description = 'Research and methodological notes by Jevan Luo.', page } = Astro.props;
+const { title, description = 'Publications and methodological notes by Jevan Luo.', page } = Astro.props;
 const isHome = page === 'home';
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -32,7 +32,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         </a>
         <span class="top-name">Jevan Luo</span>
         <nav class="top-links" aria-label="Main navigation">
-          <a href="/research/" aria-current={page === 'research' ? 'page' : undefined}>Research</a>
+          <a href="/publications/" aria-current={page === 'publications' ? 'page' : undefined}>Publications</a>
           <a href="/notes/" aria-current={page === 'notes' ? 'page' : undefined}>Notes</a>
         </nav>
       </header>

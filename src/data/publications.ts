@@ -21,6 +21,7 @@ export const publications: Publication[] = [
     year: 2026,
     topics: ['Psychometrics'],
     doi: '10.1016/j.reia.2026.202948',
+    image: { src: '/images/publications/ados-latent-space.jpg', alt: 'Conceptual illustration of assessment cards beside a teal and amber point map' },
   },
   {
     title: "Tailoring educational support with graph neural networks and explainable AI: Insights into online learners' metacognitive abilities",
@@ -29,6 +30,7 @@ export const publications: Publication[] = [
     year: 2026,
     topics: ['AI in education'],
     doi: '10.1016/j.compedu.2025.105452',
+    image: { src: '/images/publications/metacognitive-ai.jpg', alt: 'Conceptual illustration of a learning notebook and abstract neural network' },
   },
   {
     title: 'The power of social talk: A longitudinal network analysis of conversations in fostering interdisciplinary collaboration',
@@ -37,6 +39,7 @@ export const publications: Publication[] = [
     year: 2025,
     topics: ['Collaboration networks'],
     doi: '10.1017/cts.2025.10124',
+    image: { src: '/images/publications/social-talk.jpg', alt: 'Conceptual illustration of a collaborative research meeting table' },
   },
   {
     title: "Mapping the mHealth nexus: A semantic analysis of mHealth scholars' research propensities following an interdisciplinary training institute",
@@ -45,6 +48,7 @@ export const publications: Publication[] = [
     year: 2025,
     topics: ['Collaboration networks'],
     doi: '10.3390/app15116252',
+    image: { src: '/images/publications/mhealth-nexus.jpg', alt: 'Conceptual illustration of a phone and connected health research topics' },
   },
   {
     title: 'A response time-based mixture item response theory model for dynamic item-response strategies',
@@ -53,6 +57,7 @@ export const publications: Publication[] = [
     year: 2025,
     topics: ['Psychometrics'],
     doi: '10.3758/s13428-024-02555-5',
+    image: { src: '/images/publications/response-time-mixture.jpg', alt: 'Conceptual illustration of a stopwatch and response cards' },
   },
   {
     title: "Understanding STEM teachers' power distance values from a sociocultural perspective on interdisciplinary collaboration",
@@ -61,6 +66,7 @@ export const publications: Publication[] = [
     year: 2025,
     topics: ['Teaching and learning'],
     doi: '10.1007/s11191-024-00565-5',
+    image: { src: '/images/publications/stem-collaboration.jpg', alt: 'Conceptual illustration of shared STEM teaching materials' },
   },
   {
     title: "Chinese university students' growth in critical thinking: Accounting for school transition and selection effects",
@@ -69,6 +75,7 @@ export const publications: Publication[] = [
     year: 2024,
     topics: ['Educational measurement'],
     doi: '10.59863/JCUB3602',
+    image: { src: '/images/publications/critical-thinking.jpg', alt: 'Conceptual illustration of university study and an ascending sequence of ideas' },
   },
   {
     title: 'From surface to deep learning approaches with generative AI in higher education: An analytical framework of student agency',
@@ -77,6 +84,7 @@ export const publications: Publication[] = [
     year: 2024,
     topics: ['AI in education'],
     doi: '10.1080/03075079.2024.2327003',
+    image: { src: '/images/publications/generative-ai-agency.jpg', alt: 'Conceptual illustration of a student writing beside a laptop' },
   },
   {
     title: 'Cultivating AI literacy skills: How GenAI tools prepare students in humanities and social sciences to write with ethical and critical insight',
@@ -85,6 +93,7 @@ export const publications: Publication[] = [
     year: 2024,
     topics: ['AI in education'],
     doi: '10.1108/978-1-83608-852-320241012',
+    image: { src: '/images/publications/ai-literacy.jpg', alt: 'Conceptual illustration of ethical writing beside a tablet' },
   },
   {
     title: 'From data to story: Leveraging LLM-powered chatbots for learning business data analytics and visualisation in Mathematica',
@@ -93,6 +102,7 @@ export const publications: Publication[] = [
     year: 2024,
     topics: ['AI in education'],
     doi: '10.1108/978-1-83608-852-320241011',
+    image: { src: '/images/publications/data-to-story.jpg', alt: 'Conceptual illustration of a laptop showing abstract data visuals' },
   },
   {
     title: 'Bayesian estimation of latent space item response models with JAGS, Stan, and NIMBLE in R',
@@ -101,6 +111,7 @@ export const publications: Publication[] = [
     year: 2023,
     topics: ['Psychometrics'],
     doi: '10.3390/psych5020027',
+    image: { src: '/images/publications/bayesian-lsirm.jpg', alt: 'Conceptual illustration of a three-dimensional point map and probability contours' },
   },
   {
     title: 'An explanatory multidimensional random item effects rating scale model',
@@ -109,6 +120,7 @@ export const publications: Publication[] = [
     year: 2023,
     topics: ['Psychometrics'],
     doi: '10.1177/00131644221140906',
+    image: { src: '/images/publications/rating-scale-model.jpg', alt: 'Conceptual illustration of layered rating scales and geometric planes' },
   },
   {
     title: 'Relationships between changing communication networks and changing perceptions of psychological safety in a team science setting: Analysis with actor-oriented social network models',
@@ -117,6 +129,7 @@ export const publications: Publication[] = [
     year: 2022,
     topics: ['Collaboration networks'],
     doi: '10.1371/journal.pone.0273899',
+    image: { src: '/images/publications/psychological-safety-networks.jpg', alt: 'Conceptual illustration of connections across a team meeting table' },
   },
   {
     title: 'Fostering interdisciplinary collaboration: A longitudinal social network analysis of the NIH mHealth Training Institutes',
@@ -125,6 +138,7 @@ export const publications: Publication[] = [
     year: 2021,
     topics: ['Collaboration networks'],
     doi: '10.1017/cts.2021.859',
+    image: { src: '/images/publications/mhealth-collaboration.jpg', alt: 'Conceptual illustration of mHealth collaboration networks over time' },
   },
   {
     title: 'Modeling within-item dependencies in parallel data on test responses and brain activation',
@@ -133,6 +147,7 @@ export const publications: Publication[] = [
     year: 2021,
     topics: ['Psychometrics'],
     doi: '10.1007/s11336-020-09741-2',
+    image: { src: '/images/publications/test-brain-activation.jpg', alt: 'Conceptual illustration of parallel test responses and brain-related data' },
   },
   {
     title: 'Higher education and investment in knowledge: A perspective from talent policies in mainland China',
@@ -141,5 +156,6 @@ export const publications: Publication[] = [
     year: 2021,
     topics: ['Higher education'],
     doi: '10.1007/978-3-030-76579-8_6',
+    image: { src: '/images/publications/higher-ed-knowledge.jpg', alt: 'Conceptual illustration of a university setting and knowledge-policy documents' },
   },
 ];
