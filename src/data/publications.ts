@@ -16,6 +16,15 @@ export type Publication = {
 // In-press and under-review manuscripts are held back pending a current status check.
 export const publications: Publication[] = [
   {
+    title: 'Sustaining teachers’ epistemic agency in AI-supported instructional design: An exploratory design-based study of a conversational-function approach',
+    authors: 'Yang, Y., Zhang, G., Luo, J., & Kuang, S.',
+    venue: 'Teaching and Teacher Education, 183, 105826',
+    year: 2026,
+    topics: ['AI in education', 'Teaching and learning'],
+    doi: '10.1016/j.tate.2026.105826',
+    image: { src: '/images/publications/epistemic-agency-conversational-functions.png', alt: 'Two directed network diagrams comparing conversational-function connections in high and low teacher groups, with colored nodes and weighted arrows', figure: 'Author-supplied figure', sourceUrl: 'https://doi.org/10.1016/j.tate.2026.105826' },
+  },
+  {
     title: 'Investigating within-person variation in response processes for Likert-scale data with a response-level mixture IRTree model',
     authors: 'Luo, J., Huang, S., & Jeon, M.',
     venue: 'Psychometrika, advance online publication',
@@ -24,15 +33,6 @@ export const publications: Publication[] = [
     doi: '10.1017/psy.2026.10146',
     pdf: 'https://www.cambridge.org/core/services/aop-cambridge-core/content/view/2275698599E977D5DF52D4975E43A8A3/S003331232610146Xa.pdf/div-class-title-investigating-within-person-variation-in-response-processes-for-likert-scale-data-with-a-response-level-mixture-irtree-model-div.pdf',
     image: { src: '/images/publications/mixture-irtree-figure4.png', alt: 'Red and blue dot matrix showing response-level process probabilities for ten respondents across 24 items', figure: 'Figure 4, author-supplied crop', sourceUrl: 'https://doi.org/10.1017/psy.2026.10146', license: 'CC BY 4.0' },
-  },
-  {
-    title: 'Sustaining teachers’ epistemic agency in AI-supported instructional design: An exploratory design-based study of a conversational-function approach',
-    authors: 'Yang, Y., Zhang, G., Luo, J., & Kuang, S.',
-    venue: 'Teaching and Teacher Education, 183, 105826',
-    year: 2026,
-    topics: ['AI in education', 'Teaching and learning'],
-    doi: '10.1016/j.tate.2026.105826',
-    image: { src: '/images/publications/epistemic-agency-conversational-functions.png', alt: 'Two directed network diagrams comparing conversational-function connections in high and low teacher groups, with colored nodes and weighted arrows', figure: 'Author-supplied figure', sourceUrl: 'https://doi.org/10.1016/j.tate.2026.105826' },
   },
   {
     title: 'Visualizing sex differences in school aged youth on the ADOS-2 using a latent space item response model',
