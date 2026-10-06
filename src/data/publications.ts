@@ -32,6 +32,7 @@ export const publications: Publication[] = [
     year: 2026,
     topics: ['AI in education', 'Teaching and learning'],
     doi: '10.1016/j.tate.2026.105826',
+    image: { src: '/images/publications/epistemic-agency-conversational-functions.png', alt: 'Two directed network diagrams comparing conversational-function connections in high and low teacher groups, with colored nodes and weighted arrows', figure: 'Author-supplied figure', sourceUrl: 'https://doi.org/10.1016/j.tate.2026.105826' },
   },
   {
     title: 'Visualizing sex differences in school aged youth on the ADOS-2 using a latent space item response model',
