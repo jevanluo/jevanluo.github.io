@@ -1,6 +1,10 @@
 // Static, curated citations. DOI-registry exports were checked against publisher pages and the site bibliography.
 export type Citation = { apa: string; bibtex: string };
 export const citations: Record<string, Citation> = {
+  "10.1016/j.tate.2026.105826": {
+    apa: "Yang, Y., Zhang, G., Luo, J., & Kuang, S. (2026). Sustaining teachers’ epistemic agency in AI-supported instructional design: An exploratory design-based study of a conversational-function approach. Teaching and Teacher Education, 183, Article 105826. https://doi.org/10.1016/j.tate.2026.105826",
+    bibtex: "@article{Yang2026EpistemicAgency,\n  title={Sustaining teachers' epistemic agency in {AI}-supported instructional design: An exploratory design-based study of a conversational-function approach},\n  author={Yang, Yunying and Zhang, Guigen and Luo, Jinwen and Kuang, Shanyun},\n  journal={Teaching and Teacher Education},\n  year={2026},\n  volume={183},\n  pages={105826},\n  doi={10.1016/j.tate.2026.105826}\n}",
+  },
   "10.1017/psy.2026.10146": {
     apa: "Luo, J., Huang, S., & Jeon, M. (2026). Investigating within-person variation in response processes for Likert-scale data with a response-level mixture IRTree model. Psychometrika. Advance online publication. https://doi.org/10.1017/psy.2026.10146",
     bibtex: "@article{Luo2026MixtureIRTree,\n  title={Investigating Within-Person Variation in Response Processes for Likert-Scale Data with a Response-Level Mixture {IRTree} Model},\n  author={Luo, Jinwen and Huang, Sijia and Jeon, Minjeong},\n  journal={Psychometrika},\n  year={2026},\n  pages={1--25},\n  doi={10.1017/psy.2026.10146},\n  note={Advance online publication}\n}",

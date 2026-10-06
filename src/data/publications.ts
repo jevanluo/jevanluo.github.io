@@ -26,6 +26,14 @@ export const publications: Publication[] = [
     image: { src: '/images/publications/mixture-irtree-figure4.png', alt: 'Red and blue dot matrix showing response-level process probabilities for ten respondents across 24 items', figure: 'Figure 4, author-supplied crop', sourceUrl: 'https://doi.org/10.1017/psy.2026.10146', license: 'CC BY 4.0' },
   },
   {
+    title: 'Sustaining teachers’ epistemic agency in AI-supported instructional design: An exploratory design-based study of a conversational-function approach',
+    authors: 'Yang, Y., Zhang, G., Luo, J., & Kuang, S.',
+    venue: 'Teaching and Teacher Education, 183, 105826',
+    year: 2026,
+    topics: ['AI in education', 'Teaching and learning'],
+    doi: '10.1016/j.tate.2026.105826',
+  },
+  {
     title: 'Visualizing sex differences in school aged youth on the ADOS-2 using a latent space item response model',
     authors: 'Tien, I., Luo, J., Huang, Y., & Jeon, M.',
     venue: 'Research in Autism, 136, 202948',
