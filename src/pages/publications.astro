@@ -17,9 +17,7 @@ const groups = years.map((year) => ({ year, items: sorted.filter((item) => item.
       <div class="research-filters" aria-label="Filter publications">
         <label>Topic <select id="research-topic" aria-label="Publication topic"><option value="all">All topics</option>{topics.map((topic) => <option value={topic}>{topic}</option>)}</select></label>
         <label>Year <select id="research-year" aria-label="Publication year"><option value="all">All years</option>{years.map((year) => <option value={String(year)}>{year}</option>)}</select></label>
-        <span class="research-count" id="research-count" aria-live="polite">{sorted.length} {sorted.length === 1 ? 'entry' : 'entries'}</span>
       </div>
-      {sorted.length > 0 && <p class="publication-image-note">Images are conceptual illustrations, not figures from the cited papers.</p>}
       {groups.map(({ year, items }) => (
         <section class="research-year-group" data-year-group>
           <h2 class="research-year">{year}</h2>
@@ -29,7 +27,13 @@ const groups = years.map((year) => ({ year, items: sorted.filter((item) => item.
               const citation = item.doi ? citations[item.doi] : undefined;
               return (
                 <article class:list={['publication', { 'has-image': Boolean(item.image) }]} data-publication data-year={item.year} data-topics={item.topics.join('|')}>
-                  {item.image && <img class="publication-image" src={item.image.src} alt={item.image.alt} width="148" height="100" loading="lazy" decoding="async" />}
+                  {item.image && (
+                    <figure class="publication-visual">
+                      <a href={item.image.src} target="_blank" rel="noopener noreferrer" aria-label={`View ${item.image.figure} from ${item.title}`} title={`${item.image.figure} from ${item.title}${item.image.license ? ` · ${item.image.license}: https://creativecommons.org/licenses/by/4.0/` : ''}`}>
+                        <img class="publication-image" src={item.image.src} alt={item.image.alt} width="148" height="100" loading="lazy" decoding="async" />
+                      </a>
+                    </figure>
+                  )}
                   <div class="publication-body">
                     <span class="publication-kicker">{item.topics.join(' · ')}</span>
                     <h3 class="publication-title">
@@ -83,7 +87,6 @@ const groups = years.map((year) => ({ year, items: sorted.filter((item) => item.
     const yearSelect = document.querySelector<HTMLSelectElement>('#research-year');
     const entries = [...document.querySelectorAll<HTMLElement>('[data-publication]')];
     const groups = [...document.querySelectorAll<HTMLElement>('[data-year-group]')];
-    const count = document.querySelector<HTMLElement>('#research-count');
     const noMatch = document.querySelector<HTMLElement>('#research-no-match');
     function filter() {
       const topic = topicSelect?.value || 'all';
@@ -97,7 +100,6 @@ const groups = years.map((year) => ({ year, items: sorted.filter((item) => item.
       for (const group of groups) {
         group.hidden = !group.querySelector('[data-publication]:not([hidden])');
       }
-      if (count) count.textContent = `${visible} ${visible === 1 ? 'entry' : 'entries'}`;
       if (noMatch) noMatch.hidden = visible > 0;
     }
     topicSelect?.addEventListener('change', filter);

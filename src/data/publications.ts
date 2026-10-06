@@ -7,7 +7,7 @@ export type Publication = {
   doi?: string;
   pdf?: string;
   resources?: { label: string; url: string }[];
-  image?: { src: string; alt: string };
+  image?: { src: string; alt: string; figure: string; sourceUrl: string; license?: 'CC BY 4.0' };
 };
 
 // Published works transcribed from CV_Overleaf/publications.tex (September 2026).
@@ -21,7 +21,7 @@ export const publications: Publication[] = [
     year: 2026,
     topics: ['Psychometrics'],
     doi: '10.1016/j.reia.2026.202948',
-    image: { src: '/images/publications/ados-latent-space.jpg', alt: 'Conceptual illustration of assessment cards beside a teal and amber point map' },
+    image: { src: '/images/publications/tien-ados-latent-space-sex.png', alt: 'Two-dimensional latent-space plot with respondent points colored by sex and labeled ADOS-2 items', figure: 'Author-supplied figure', sourceUrl: 'https://doi.org/10.1016/j.reia.2026.202948' },
   },
   {
     title: "Tailoring educational support with graph neural networks and explainable AI: Insights into online learners' metacognitive abilities",
@@ -30,7 +30,7 @@ export const publications: Publication[] = [
     year: 2026,
     topics: ['AI in education'],
     doi: '10.1016/j.compedu.2025.105452',
-    image: { src: '/images/publications/metacognitive-ai.jpg', alt: 'Conceptual illustration of a learning notebook and abstract neural network' },
+    image: { src: '/images/publications/wang-metacognitive-ability.png', alt: 'Side-by-side directed graphs comparing learning-strategy connections for students with high and low metacognitive ability', figure: 'Author-supplied figure', sourceUrl: 'https://doi.org/10.1016/j.compedu.2025.105452' },
   },
   {
     title: 'The power of social talk: A longitudinal network analysis of conversations in fostering interdisciplinary collaboration',
@@ -40,7 +40,7 @@ export const publications: Publication[] = [
     topics: ['Collaboration networks'],
     doi: '10.1017/cts.2025.10124',
     pdf: 'https://www.cambridge.org/core/services/aop-cambridge-core/content/view/A1B2BFE844618D1AFFE69E6A99FBEBF3/S2059866125101246a.pdf/the-power-of-social-talk-a-longitudinal-network-analysis-of-conversations-in-fostering-interdisciplinary-collaboration.pdf',
-    image: { src: '/images/publications/social-talk.jpg', alt: 'Conceptual illustration of a collaborative research meeting table' },
+    image: { src: '/images/publications/social-talk-figure1.png', alt: 'Timeline of online and in-person data collection days', figure: 'Figure 1', sourceUrl: 'https://doi.org/10.1017/cts.2025.10124', license: 'CC BY 4.0' },
   },
   {
     title: "Mapping the mHealth nexus: A semantic analysis of mHealth scholars' research propensities following an interdisciplinary training institute",
@@ -50,7 +50,7 @@ export const publications: Publication[] = [
     topics: ['Collaboration networks'],
     doi: '10.3390/app15116252',
     pdf: 'https://mdpi-res.com/d_attachment/applsci/applsci-15-06252/article_deploy/applsci-15-06252-v2.pdf?version=1749114439',
-    image: { src: '/images/publications/mhealth-nexus.jpg', alt: 'Conceptual illustration of a phone and connected health research topics' },
+    image: { src: '/images/publications/mhealth-nexus-figure6.png', alt: 'Semantic map of mHealth scholars’ publications colored by topic', figure: 'Figure 6', sourceUrl: 'https://doi.org/10.3390/app15116252', license: 'CC BY 4.0' },
   },
   {
     title: 'A response time-based mixture item response theory model for dynamic item-response strategies',
@@ -59,7 +59,7 @@ export const publications: Publication[] = [
     year: 2025,
     topics: ['Psychometrics'],
     doi: '10.3758/s13428-024-02555-5',
-    image: { src: '/images/publications/response-time-mixture.jpg', alt: 'Conceptual illustration of a stopwatch and response cards' },
+    image: { src: '/images/publications/response-time-mixture-response-matrix.png', alt: 'Dot matrix with 15 numbered item columns and examinee rows, using filled and hollow circles', figure: 'Author-supplied figure', sourceUrl: 'https://doi.org/10.3758/s13428-024-02555-5' },
   },
   {
     title: "Understanding STEM teachers' power distance values from a sociocultural perspective on interdisciplinary collaboration",
@@ -68,7 +68,7 @@ export const publications: Publication[] = [
     year: 2025,
     topics: ['Teaching and learning'],
     doi: '10.1007/s11191-024-00565-5',
-    image: { src: '/images/publications/stem-collaboration.jpg', alt: 'Conceptual illustration of shared STEM teaching materials' },
+    image: { src: '/images/publications/stem-power-distance-network.png', alt: 'Network diagram with eight labeled nodes and weighted blue and purple connections', figure: 'Author-supplied figure', sourceUrl: 'https://doi.org/10.1007/s11191-024-00565-5' },
   },
   {
     title: "Chinese university students' growth in critical thinking: Accounting for school transition and selection effects",
@@ -77,7 +77,7 @@ export const publications: Publication[] = [
     year: 2024,
     topics: ['Educational measurement'],
     doi: '10.59863/JCUB3602',
-    image: { src: '/images/publications/critical-thinking.jpg', alt: 'Conceptual illustration of university study and an ascending sequence of ideas' },
+    image: { src: '/images/publications/critical-thinking-figure1.png', alt: 'Framework connecting high school and university impacts with critical thinking development', figure: 'Figure 1, cropped', sourceUrl: 'https://doi.org/10.59863/JCUB3602', license: 'CC BY 4.0' },
   },
   {
     title: 'From surface to deep learning approaches with generative AI in higher education: An analytical framework of student agency',
@@ -86,7 +86,7 @@ export const publications: Publication[] = [
     year: 2024,
     topics: ['AI in education'],
     doi: '10.1080/03075079.2024.2327003',
-    image: { src: '/images/publications/generative-ai-agency.jpg', alt: 'Conceptual illustration of a student writing beside a laptop' },
+    image: { src: '/images/publications/generative-ai-student-agency-example.png', alt: 'Side-by-side screenshot of a generative-AI writing conversation and a Chinese-language article PDF', figure: 'Author-supplied figure', sourceUrl: 'https://doi.org/10.1080/03075079.2024.2327003' },
   },
   {
     title: 'Cultivating AI literacy skills: How GenAI tools prepare students in humanities and social sciences to write with ethical and critical insight',
@@ -95,7 +95,6 @@ export const publications: Publication[] = [
     year: 2024,
     topics: ['AI in education'],
     doi: '10.1108/978-1-83608-852-320241012',
-    image: { src: '/images/publications/ai-literacy.jpg', alt: 'Conceptual illustration of ethical writing beside a tablet' },
   },
   {
     title: 'From data to story: Leveraging LLM-powered chatbots for learning business data analytics and visualisation in Mathematica',
@@ -104,7 +103,7 @@ export const publications: Publication[] = [
     year: 2024,
     topics: ['AI in education'],
     doi: '10.1108/978-1-83608-852-320241011',
-    image: { src: '/images/publications/data-to-story.jpg', alt: 'Conceptual illustration of a laptop showing abstract data visuals' },
+    image: { src: '/images/publications/data-to-story-creative-analytics.png', alt: 'Three-tier pyramid labeled AI Mash-up, Computational Recipes, and Creative Analytics, connecting diverse data inputs to business story and insights', figure: 'Author-supplied figure', sourceUrl: 'https://doi.org/10.1108/978-1-83608-852-320241011' },
   },
   {
     title: 'Bayesian estimation of latent space item response models with JAGS, Stan, and NIMBLE in R',
@@ -114,7 +113,7 @@ export const publications: Publication[] = [
     topics: ['Psychometrics'],
     doi: '10.3390/psych5020027',
     pdf: 'https://mdpi-res.com/d_attachment/psych/psych-05-00027/article_deploy/psych-05-00027.pdf',
-    image: { src: '/images/publications/bayesian-lsirm.jpg', alt: 'Conceptual illustration of a three-dimensional point map and probability contours' },
+    image: { src: '/images/publications/bayesian-lsirm-figure2.png', alt: 'Estimated latent-space interaction maps from JAGS, Stan, and NIMBLE', figure: 'Figure 2', sourceUrl: 'https://doi.org/10.3390/psych5020027', license: 'CC BY 4.0' },
   },
   {
     title: 'An explanatory multidimensional random item effects rating scale model',
@@ -124,7 +123,6 @@ export const publications: Publication[] = [
     topics: ['Psychometrics'],
     doi: '10.1177/00131644221140906',
     pdf: 'https://escholarship.org/content/qt9r7122hv/qt9r7122hv.pdf',
-    image: { src: '/images/publications/rating-scale-model.jpg', alt: 'Conceptual illustration of layered rating scales and geometric planes' },
   },
   {
     title: 'Relationships between changing communication networks and changing perceptions of psychological safety in a team science setting: Analysis with actor-oriented social network models',
@@ -134,7 +132,7 @@ export const publications: Publication[] = [
     topics: ['Collaboration networks'],
     doi: '10.1371/journal.pone.0273899',
     pdf: 'https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0273899&type=printable',
-    image: { src: '/images/publications/psychological-safety-networks.jpg', alt: 'Conceptual illustration of connections across a team meeting table' },
+    image: { src: '/images/publications/psychological-safety-figure1.png', alt: 'Conversation networks across three days of the mHealth institutes', figure: 'Figure 1', sourceUrl: 'https://doi.org/10.1371/journal.pone.0273899', license: 'CC BY 4.0' },
   },
   {
     title: 'Fostering interdisciplinary collaboration: A longitudinal social network analysis of the NIH mHealth Training Institutes',
@@ -144,7 +142,7 @@ export const publications: Publication[] = [
     topics: ['Collaboration networks'],
     doi: '10.1017/cts.2021.859',
     pdf: 'https://www.cambridge.org/core/services/aop-cambridge-core/content/view/7F5DFDB03531155D366A9855589E0979/S2059866121008591a.pdf/div-class-title-fostering-interdisciplinary-collaboration-a-longitudinal-social-network-analysis-of-the-nih-mhealth-training-institutes-div.pdf',
-    image: { src: '/images/publications/mhealth-collaboration.jpg', alt: 'Conceptual illustration of mHealth collaboration networks over time' },
+    image: { src: '/images/publications/mhealth-collaboration-figure2.png', alt: 'Project-based conversation networks across three training cohorts', figure: 'Figure 2', sourceUrl: 'https://doi.org/10.1017/cts.2021.859', license: 'CC BY 4.0' },
   },
   {
     title: 'Modeling within-item dependencies in parallel data on test responses and brain activation',
@@ -153,7 +151,6 @@ export const publications: Publication[] = [
     year: 2021,
     topics: ['Psychometrics'],
     doi: '10.1007/s11336-020-09741-2',
-    image: { src: '/images/publications/test-brain-activation.jpg', alt: 'Conceptual illustration of parallel test responses and brain-related data' },
   },
   {
     title: 'Higher education and investment in knowledge: A perspective from talent policies in mainland China',
@@ -162,6 +159,6 @@ export const publications: Publication[] = [
     year: 2021,
     topics: ['Higher education'],
     doi: '10.1007/978-3-030-76579-8_6',
-    image: { src: '/images/publications/higher-ed-knowledge.jpg', alt: 'Conceptual illustration of a university setting and knowledge-policy documents' },
+    image: { src: '/images/publications/shen-luo-higher-education-enrollment.png', alt: 'Chart of higher education institutions, undergraduate enrollment, and gross enrollment rate in China from 1999 to 2018', figure: 'Author-supplied figure', sourceUrl: 'https://doi.org/10.1007/978-3-030-76579-8_6' },
   },
 ];

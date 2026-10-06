@@ -20,22 +20,22 @@ const recent = [
 ---
 
 <BaseLayout title="Jevan Luo" page="home">
-  <div class="cover" role="img" aria-label="Quiet campus scene"></div>
+  <div class="cover" role="img" aria-label="Sketches of landmarks from Jingzhou, Wuhan, Los Angeles, Shenzhen, Champaign-Urbana, and Guangzhou"></div>
   <a class="portrait-home" href="#top" aria-label="Jevan Luo, return to top">
-    <img src="/images/portrait.png" alt="Illustrated portrait placeholder" width="104" height="104" />
+    <img src="/images/portrait-illustrated.png" alt="" width="150" height="180" />
   </a>
   <div class="page-layout" id="top">
     <Sidebar page="home" />
     <main class="page-main">
       <section class="bio">
         <h1>Hello, I’m Jevan Luo.</h1>
-        <p class="bio-copy">I study how we can draw careful conclusions from assessments and the models we use to understand them.</p>
-        <p class="bio-copy secondary">This site brings together my publications, short methodological notes, and ideas still taking shape. I welcome conversations with people working on related questions.</p>
+        <p class="bio-copy">I study how people think, learn, and interact, and the methods we use to understand them.</p>
+        <p class="bio-copy secondary">My work brings together measurement, statistical modeling, and research software. I collaborate on questions in learning, AI, and research networks, and use this site to share publications and methodological notes.</p>
         <a class="quick-link" href="/publications/">Browse publications ↗</a>
       </section>
 
       <section class="updates" aria-labelledby="recent-updates-title">
-        <div class="section-head"><h2 id="recent-updates-title">Recent updates</h2><span>A short, curated list</span></div>
+        <div class="section-head"><h2 id="recent-updates-title">Recent updates</h2></div>
         {recent.length ? recent.map((item) => (
           <a class="update-row" href={item.href}>
             <span class="update-kind">{item.kind}</span><span class="update-title">{item.title}</span><span class="update-arrow" aria-hidden="true">↗</span>
@@ -47,7 +47,69 @@ const recent = [
         <div><h2 id="collaboration-title">Let’s collaborate.</h2><p>If you see a connection to your work in measurement, assessment, or methods, I would be glad to hear from you.</p></div>
         {site.email && <a class="email-link" href={`mailto:${site.email}`}>Email ↗</a>}
       </section>
-      <footer class="site-footer">© {new Date().getFullYear()} Jevan Luo</footer>
+      <footer class="site-footer">
+        <span>© {new Date().getFullYear()} Jevan Luo</span>
+        <details class="appearance-picker">
+          <summary>Appearance</summary>
+          <div class="appearance-panel">
+            <fieldset>
+              <legend>Mode</legend>
+              <label><input type="radio" name="mode" value="auto" checked />Auto · dark 8 pm–6 am</label>
+              <label><input type="radio" name="mode" value="light" />Light</label>
+              <label><input type="radio" name="mode" value="dark" />Dark</label>
+            </fieldset>
+            <fieldset>
+              <legend>Light background</legend>
+              <label><input type="radio" name="palette" value="neutral" checked /><span class="appearance-swatch" style="--swatch: #fcfcf9"></span>Neutral</label>
+              <label><input type="radio" name="palette" value="botanical" /><span class="appearance-swatch" style="--swatch: #cfe8bd"></span>Botanical green</label>
+              <label><input type="radio" name="palette" value="sky" /><span class="appearance-swatch" style="--swatch: #cbe7f4"></span>Clear sky</label>
+              <label><input type="radio" name="palette" value="apricot" /><span class="appearance-swatch" style="--swatch: #f9ddc6"></span>Warm apricot</label>
+              <label><input type="radio" name="palette" value="lilac" /><span class="appearance-swatch" style="--swatch: #e1d8f4"></span>Soft lilac</label>
+            </fieldset>
+            <fieldset>
+              <legend>Landmark drawing</legend>
+              <label><input type="radio" name="skyline" value="auto" checked />Follow mode</label>
+              <label><input type="radio" name="skyline" value="chinese-watercolor" />Chinese watercolor</label>
+              <label><input type="radio" name="skyline" value="inkwash" />Chinese ink wash</label>
+              <label><input type="radio" name="skyline" value="neon" />Neon cyberpunk</label>
+              <label><input type="radio" name="skyline" value="ink" />Black and white sketch</label>
+              <label><input type="radio" name="skyline" value="color" />Colored pencil</label>
+              <label><input type="radio" name="skyline" value="watercolor" />Watercolor</label>
+            </fieldset>
+          </div>
+        </details>
+      </footer>
     </main>
   </div>
 </BaseLayout>
+
+<script>
+  const picker = document.querySelector('.appearance-picker');
+  if (picker) {
+    const palette = document.documentElement.dataset.palette ?? 'neutral';
+    const mode = document.documentElement.dataset.modeChoice ?? 'auto';
+    const skyline = document.documentElement.dataset.skylineChoice ?? 'auto';
+    picker.querySelector<HTMLInputElement>(`input[name="mode"][value="${mode}"]`)!.checked = true;
+    picker.querySelector<HTMLInputElement>(`input[name="palette"][value="${palette}"]`)!.checked = true;
+    picker.querySelector<HTMLInputElement>(`input[name="skyline"][value="${skyline}"]`)!.checked = true;
+
+    picker.addEventListener('change', (event) => {
+      const input = event.target;
+      if (!(input instanceof HTMLInputElement)) return;
+      const storageKey = { mode: 'jevan-mode', palette: 'jevan-palette', skyline: 'jevan-skyline-choice-v2' }[input.name];
+      if (!storageKey) return;
+      try { localStorage.setItem(storageKey, input.value); } catch { /* Keep this session's choice. */ }
+      dispatchEvent(new CustomEvent('jevan-appearance-change', { detail: { name: input.name, value: input.value } }));
+    });
+
+    document.addEventListener('click', (event) => {
+      if (picker instanceof HTMLDetailsElement && !picker.contains(event.target as Node)) picker.open = false;
+    });
+    picker.addEventListener('keydown', (event) => {
+      if (event instanceof KeyboardEvent && event.key === 'Escape' && picker instanceof HTMLDetailsElement) {
+        picker.open = false;
+        picker.querySelector('summary')?.focus();
+      }
+    });
+  }
+</script>

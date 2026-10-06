@@ -23,12 +23,53 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title === siteData.name ? title : `${title} · ${siteData.name}`}</title>
+    <script is:inline>
+      (() => {
+        const sessionChoice = {};
+        const applyAppearance = () => {
+          let modeChoice = 'auto';
+          let skylineChoice = 'auto';
+          let palette = 'neutral';
+          try {
+            modeChoice = localStorage.getItem('jevan-mode') || 'auto';
+            skylineChoice = localStorage.getItem('jevan-skyline-choice-v2') || 'auto';
+            palette = localStorage.getItem('jevan-palette') || 'neutral';
+          } catch {
+            // Automatic appearance also works without local storage.
+          }
+          modeChoice = sessionChoice.mode || modeChoice;
+          skylineChoice = sessionChoice.skyline || skylineChoice;
+          palette = sessionChoice.palette || palette;
+          if (!['auto', 'light', 'dark'].includes(modeChoice)) modeChoice = 'auto';
+          if (!['auto', 'chinese-watercolor', 'inkwash', 'neon', 'ink', 'color', 'watercolor'].includes(skylineChoice)) skylineChoice = 'auto';
+          const hour = new Date().getHours();
+          const mode = modeChoice === 'auto' ? (hour >= 20 || hour < 6 ? 'dark' : 'light') : modeChoice;
+          const skyline = skylineChoice === 'auto' ? (mode === 'dark' ? 'neon' : 'chinese-watercolor') : skylineChoice;
+          const root = document.documentElement;
+          root.dataset.mode = mode;
+          root.dataset.modeChoice = modeChoice;
+          root.dataset.skyline = skyline;
+          root.dataset.skylineChoice = skylineChoice;
+          if (['botanical', 'sky', 'apricot', 'lilac'].includes(palette)) root.dataset.palette = palette;
+          else delete root.dataset.palette;
+        };
+        applyAppearance();
+        addEventListener('jevan-appearance-change', (event) => {
+          if (event.detail && ['mode', 'skyline', 'palette'].includes(event.detail.name)) {
+            sessionChoice[event.detail.name] = event.detail.value;
+          }
+          applyAppearance();
+        });
+        setInterval(applyAppearance, 60_000);
+        document.addEventListener('visibilitychange', () => { if (!document.hidden) applyAppearance(); });
+      })();
+    </script>
   </head>
   <body>
     <div class:list={['site', isHome ? 'site-home' : 'site-inner']} id="site">
       <header class="topbar">
         <a class="top-portrait" href="/" aria-label="Jevan Luo, home">
-          <img src="/images/portrait.png" alt="" width="44" height="44" />
+          <img src="/images/portrait-illustrated.png" alt="" width="56" height="67" />
         </a>
         <span class="top-name">Jevan Luo</span>
         <nav class="top-links" aria-label="Main navigation">
