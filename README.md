@@ -1,6 +1,6 @@
 # Jevan Luo personal site
 
-This Astro site is published from the [jevanluo.github.io repository](https://github.com/jevanluo/jevanluo.github.io) through GitHub Pages. `jevanluo.com` is configured in GitHub Pages, and its Cloudflare DNS records point to GitHub. HTTPS certificate provisioning is pending.
+This Astro site is published from the [jevanluo.github.io repository](https://github.com/jevanluo/jevanluo.github.io) through GitHub Pages at [jevanluo.com](https://jevanluo.com/). Cloudflare DNS points to GitHub, and HTTPS is enforced.
 
 ## Run locally
 
@@ -40,7 +40,7 @@ Notes support `$inline math$`, `$$display math$$`, and local figures with `![alt
 
 ## Hosting and jevanluo.com
 
-The public repository is [`jevanluo/jevanluo.github.io`](https://github.com/jevanluo/jevanluo.github.io). A push to `main` runs `.github/workflows/deploy.yml`. GitHub Pages has `jevanluo.com` set as the custom domain, and Cloudflare's authoritative DNS has the records below. After GitHub issues the HTTPS certificate, enable HTTPS enforcement and verify both domain variants.
+The public repository is [`jevanluo/jevanluo.github.io`](https://github.com/jevanluo/jevanluo.github.io). A push to `main` runs `.github/workflows/deploy.yml`. GitHub Pages has `jevanluo.com` set as the custom domain, and HTTPS is enforced. Both the apex and `www` domains use GitHub's approved certificate; `www` redirects to the apex.
 
 The DNS configuration is:
 
@@ -54,7 +54,7 @@ All five website records are **DNS only** in Cloudflare. Keep unrelated MX/TXT r
    | A | `@` | `185.199.111.153` |
    | CNAME | `www` | `jevanluo.github.io` |
 
-After GitHub provisions the certificate, enable **Enforce HTTPS** in repository Pages settings. Check both `https://jevanluo.com/` and `https://www.jevanluo.com/`. In personal GitHub **Settings → Pages**, verify ownership of `jevanluo.com` using GitHub's TXT record for added protection.
+In personal GitHub **Settings → Pages**, verify ownership of `jevanluo.com` using GitHub's TXT record for added protection.
 
 See [GitHub's custom-domain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site), [domain verification](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages), and [Astro's GitHub Pages guide](https://docs.astro.build/en/guides/deploy/github/).
 
