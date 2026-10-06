@@ -9,7 +9,7 @@ interface Props {
   page: 'home' | 'publications' | 'notes';
 }
 
-const { title, description = 'Publications and methodological notes by Jevan Luo.', page } = Astro.props;
+const { title, description = 'Publications and methodological notes by Jinwen Luo.', page } = Astro.props;
 const isHome = page === 'home';
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -68,10 +68,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <body>
     <div class:list={['site', isHome ? 'site-home' : 'site-inner']} id="site">
       <header class="topbar">
-        <a class="top-portrait" href="/" aria-label="Jevan Luo, home">
+        <a class="top-portrait" href="/" aria-label="Jinwen Luo, home">
           <img src="/images/portrait-illustrated.png" alt="" width="56" height="67" />
         </a>
-        <span class="top-name">Jevan Luo</span>
+        <span class="top-name">Jinwen Luo</span>
         <nav class="top-links" aria-label="Main navigation">
           <a href="/publications/" aria-current={page === 'publications' ? 'page' : undefined}>Publications</a>
           <a href="/notes/" aria-current={page === 'notes' ? 'page' : undefined}>Notes</a>

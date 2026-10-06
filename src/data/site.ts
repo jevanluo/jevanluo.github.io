@@ -1,4 +1,4 @@
 export const site = {
-  name: 'Jevan Luo',
+  name: 'Jinwen Luo',
   email: 'jevanluo@ucla.edu',
 };

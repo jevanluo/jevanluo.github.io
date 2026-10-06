@@ -10,7 +10,7 @@ const years = [...new Set(sorted.map((item) => item.year))].sort((a, b) => b - a
 const groups = years.map((year) => ({ year, items: sorted.filter((item) => item.year === year) }));
 ---
 
-<BaseLayout title="Publications" description="Publications by Jevan Luo." page="publications">
+<BaseLayout title="Publications" description="Publications by Jinwen Luo." page="publications">
   <div class="page-layout">
     <Sidebar page="publications" />
     <main class="page-main" id="research-list">
