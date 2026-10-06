@@ -1,6 +1,6 @@
 # Jevan Luo personal site
 
-This Astro site is published from the [jevanluo.github.io repository](https://github.com/jevanluo/jevanluo.github.io) through GitHub Pages. `jevanluo.com` is configured in GitHub Pages; its Cloudflare DNS records still need to point to GitHub.
+This Astro site is published from the [jevanluo.github.io repository](https://github.com/jevanluo/jevanluo.github.io) through GitHub Pages. `jevanluo.com` is configured in GitHub Pages, and its Cloudflare DNS records point to GitHub. HTTPS certificate provisioning is pending.
 
 ## Run locally
 
@@ -40,11 +40,11 @@ Notes support `$inline math$`, `$$display math$$`, and local figures with `![alt
 
 ## Hosting and jevanluo.com
 
-The public repository is [`jevanluo/jevanluo.github.io`](https://github.com/jevanluo/jevanluo.github.io). A push to `main` runs `.github/workflows/deploy.yml`. GitHub Pages has `jevanluo.com` set as the custom domain. The domain still serves the previous site until its Cloudflare DNS records are updated.
+The public repository is [`jevanluo/jevanluo.github.io`](https://github.com/jevanluo/jevanluo.github.io). A push to `main` runs `.github/workflows/deploy.yml`. GitHub Pages has `jevanluo.com` set as the custom domain, and Cloudflare's authoritative DNS has the records below. After GitHub issues the HTTPS certificate, enable HTTPS enforcement and verify both domain variants.
 
-To connect the domain:
+The DNS configuration is:
 
-1. In Cloudflare DNS, replace conflicting website A/AAAA/CNAME records for `@` and `www` with these four A records for `@` and a CNAME for `www`. Set these web records to **DNS only** during setup so GitHub sees their targets. Keep unrelated MX/TXT records, including email and GitHub's verification TXT record.
+All five website records are **DNS only** in Cloudflare. Keep unrelated MX/TXT records, including email and GitHub's verification TXT record.
 
    | Type | Name | Content |
    | --- | --- | --- |
@@ -54,7 +54,7 @@ To connect the domain:
    | A | `@` | `185.199.111.153` |
    | CNAME | `www` | `jevanluo.github.io` |
 
-2. After DNS resolves and GitHub provisions the certificate, enable **Enforce HTTPS** in repository Pages settings. Check both `https://jevanluo.com/` and `https://www.jevanluo.com/`. Retire the old site only after the new domain works. In personal GitHub **Settings → Pages**, verify ownership of `jevanluo.com` using GitHub's TXT record for added protection.
+After GitHub provisions the certificate, enable **Enforce HTTPS** in repository Pages settings. Check both `https://jevanluo.com/` and `https://www.jevanluo.com/`. In personal GitHub **Settings → Pages**, verify ownership of `jevanluo.com` using GitHub's TXT record for added protection.
 
 See [GitHub's custom-domain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site), [domain verification](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages), and [Astro's GitHub Pages guide](https://docs.astro.build/en/guides/deploy/github/).
 
