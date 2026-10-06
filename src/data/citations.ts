@@ -1,6 +1,10 @@
 // Static, curated citations. DOI-registry exports were checked against publisher pages and the site bibliography.
 export type Citation = { apa: string; bibtex: string };
 export const citations: Record<string, Citation> = {
+  "10.1017/psy.2026.10146": {
+    apa: "Luo, J., Huang, S., & Jeon, M. (2026). Investigating within-person variation in response processes for Likert-scale data with a response-level mixture IRTree model. Psychometrika. Advance online publication. https://doi.org/10.1017/psy.2026.10146",
+    bibtex: "@article{Luo2026MixtureIRTree,\n  title={Investigating Within-Person Variation in Response Processes for Likert-Scale Data with a Response-Level Mixture {IRTree} Model},\n  author={Luo, Jinwen and Huang, Sijia and Jeon, Minjeong},\n  journal={Psychometrika},\n  year={2026},\n  pages={1--25},\n  doi={10.1017/psy.2026.10146},\n  note={Advance online publication}\n}",
+  },
   "10.1016/j.reia.2026.202948": {
     apa: "Tien, I., Luo, J., Huang, Y., & Jeon, M. (2026). Visualizing sex differences in school aged youth on the ADOS-2 using a latent space item response model. Research in Autism, 136, 202948. https://doi.org/10.1016/j.reia.2026.202948",
     bibtex: "@article{Tien2026Visualizing,\n  title={Visualizing sex differences in school aged youth on the ADOS-2 using a latent space item response model},\n  volume={136},\n  doi={10.1016/j.reia.2026.202948},\n  journal={Research in Autism},\n  author={Tien, Ingrid and Luo, Jevan and Huang, Yingshi and Jeon, Minjeong},\n  year={2026},\n  pages={202948}\n}",

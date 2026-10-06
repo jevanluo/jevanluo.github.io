@@ -7,4 +7,11 @@ export type SiteUpdate = {
 
 // Use this only for publication or news items that should appear on the homepage.
 // Notes are included there automatically from their Markdown metadata.
-export const updates: SiteUpdate[] = [];
+export const updates: SiteUpdate[] = [
+  {
+    date: '2026-10-06',
+    kind: 'Publication',
+    title: 'New paper in Psychometrika: within-person variation in response processes',
+    href: 'https://doi.org/10.1017/psy.2026.10146',
+  },
+];

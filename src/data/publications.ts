@@ -10,10 +10,21 @@ export type Publication = {
   image?: { src: string; alt: string; figure: string; sourceUrl: string; license?: 'CC BY 4.0' };
 };
 
-// Published works transcribed from CV_Overleaf/publications.tex (September 2026).
+// Published works transcribed from CV_Overleaf/publications.tex (September 2026),
+// with new publications verified against publisher pages and DOI metadata.
 // See that folder's publication_checks.md for the source and verification limits.
 // In-press and under-review manuscripts are held back pending a current status check.
 export const publications: Publication[] = [
+  {
+    title: 'Investigating within-person variation in response processes for Likert-scale data with a response-level mixture IRTree model',
+    authors: 'Luo, J., Huang, S., & Jeon, M.',
+    venue: 'Psychometrika, advance online publication',
+    year: 2026,
+    topics: ['Psychometrics'],
+    doi: '10.1017/psy.2026.10146',
+    pdf: 'https://www.cambridge.org/core/services/aop-cambridge-core/content/view/2275698599E977D5DF52D4975E43A8A3/S003331232610146Xa.pdf/div-class-title-investigating-within-person-variation-in-response-processes-for-likert-scale-data-with-a-response-level-mixture-irtree-model-div.pdf',
+    image: { src: '/images/publications/mixture-irtree-figure4.png', alt: 'Red and blue dot matrix showing response-level process probabilities for ten respondents across 24 items', figure: 'Figure 4, author-supplied crop', sourceUrl: 'https://doi.org/10.1017/psy.2026.10146', license: 'CC BY 4.0' },
+  },
   {
     title: 'Visualizing sex differences in school aged youth on the ADOS-2 using a latent space item response model',
     authors: 'Tien, I., Luo, J., Huang, Y., & Jeon, M.',

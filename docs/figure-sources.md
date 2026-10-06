@@ -1,9 +1,10 @@
 # Publication figure thumbnails
 
-Thirteen website thumbnails reproduce figures or screenshots from the corresponding papers. Six figures have verified CC BY 4.0 licenses; seven images were supplied by Jinwen Luo. Site images are in `public/images/publications/`. The Publications page has no visible figure captions or source panel. Source and license information remains in the publication metadata and the table below. The critical-thinking thumbnail is a cropped rendering of Figure 1 from the published article.
+Fourteen website thumbnails reproduce figures or screenshots from the corresponding papers. Seven figures have verified CC BY 4.0 licenses; the remaining seven images were supplied by Jinwen Luo without a CC license being asserted. Site images are in `public/images/publications/`. The Publications page has no visible figure captions or source panel. Source and license information remains in the publication metadata and the table below. The critical-thinking thumbnail is a cropped rendering of Figure 1 from the published article.
 
 | Publication | Figure used | Source and license evidence |
 | --- | --- | --- |
+| Investigating within-person variation in response processes for Likert-scale data (2026) | Figure 4, response-level prevalence of selected persons; author-supplied crop | [Cambridge article and CC BY 4.0 statement](https://doi.org/10.1017/psy.2026.10146); supplied image used without modification; verified 6 October 2026 |
 | Visualizing sex differences in school aged youth on the ADOS-2 (2026) | Author-supplied latent-space plot colored by sex | [Research in Autism article](https://doi.org/10.1016/j.reia.2026.202948); image supplied by Jinwen Luo, no CC license asserted |
 | Tailoring educational support with graph neural networks (2026) | Author-supplied comparison of high and low metacognitive ability | [Elsevier article](https://doi.org/10.1016/j.compedu.2025.105452); image supplied by Jinwen Luo, no CC license asserted |
 | The power of social talk (2025) | Figure 1, data-collection timeline | [Cambridge article](https://doi.org/10.1017/cts.2025.10124) |
