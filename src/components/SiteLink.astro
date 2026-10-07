@@ -1,0 +1,30 @@
+---
+interface Props {
+  href: string;
+  icon?: string;
+}
+
+const { href, icon } = Astro.props;
+---
+
+<a class:list={['site-link', { 'has-icon': Boolean(icon) }]} href={href}>{icon && <img src={icon} alt="" width="14" height="14" loading="lazy" decoding="async" />}<slot /></a>
+
+<style>
+  .site-link {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+  .site-link:hover { color: var(--accent-hover); }
+  .has-icon { white-space: nowrap; }
+  .site-link img {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+    vertical-align: -2px;
+    object-fit: contain;
+    border-radius: 2px;
+    background: #fff;
+  }
+</style>

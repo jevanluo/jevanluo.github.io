@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Sidebar from '../components/Sidebar.astro';
+import SiteLink from '../components/SiteLink.astro';
 import { updates } from '../data/updates';
 import { site } from '../data/site';
 
@@ -30,9 +31,14 @@ const recent = [
       <section class="bio">
         <h1>Hello, I’m Jinwen Luo.</h1>
         <p class="bio-copy">I study how people think, learn, and interact, and the methods we use to understand them. In collaborations across disciplines, I value thoughtfulness in how we frame problems and construct analyses, with attention to the people and settings involved.</p>
-        <p class="bio-copy secondary">I earned my PhD at UCLA. My main work is developing measurement models and examining what assessment scores allow us to infer about a person. I am interested in how models and scoring procedures can support valid and fair interpretations when complex constructs are expressed differently across tasks and settings, or when assessment purposes and scoring criteria change. I am also interested in representing an individual’s profile of abilities as it changes over time.</p>
-        <p class="bio-copy secondary">My interest in assessment began with studying college students’ competency profiles at HUST and SUSTech. I have since worked with the <a href="https://www.aph.org/product/braille-brain/">Braille Brain</a> team on reading assessment for students with visual impairments, and with <a href="https://mhti.md2k.org/">mHTI</a> on research networks and program evaluation.</p>
-        <p class="bio-copy secondary">During my undergraduate years at HUST, I worked with a bunch of geeks at <a href="https://hustunique.com/">Unique Studio</a>, a student-run community. We learned by building things together and following our interests across disciplines. I learned to start with the people we were building for and the problems they faced. That way of learning and working still shapes how I approach methodological problems.</p>
+        <details class="bio-more">
+          <summary aria-controls="expanded-bio">More about Me</summary>
+          <div id="expanded-bio">
+            <p class="bio-copy secondary">I earned my PhD at UCLA at <SiteLink href="https://sites.google.com/site/arbormj/home?authuser=0" icon="/images/site-icons/jeon-lab.ico">Jeon’s Lab</SiteLink>. My main work is developing measurement models and examining what assessment scores allow us to infer about a person. I am interested in how models and scoring procedures can support valid and fair interpretations when complex constructs are expressed differently across tasks and settings, or when assessment purposes and scoring criteria change. I am also interested in representing an individual’s profile of abilities as it changes over time. My work is supported by the <SiteLink href="https://seis.ucla.edu/news/ucla-edis-doctoral-student-jinwen-jevan-luo-has/">Harold Gulliksen Psychometric Research Fellowship</SiteLink> from <SiteLink href="https://www.ets.org/research.html" icon="/images/site-icons/ets.png">ETS</SiteLink>.</p>
+            <p class="bio-copy secondary">My interest in assessment began with studying college students’ competency profiles at HUST and SUSTech. I have since worked with the <SiteLink href="https://www.aph.org/product/braille-brain/" icon="/images/site-icons/braille-brain.png">Braille Brain</SiteLink> team on reading assessment for students with visual impairments, and with <SiteLink href="https://mhti.md2k.org/" icon="/images/site-icons/mhti.png">mHTI</SiteLink> on research networks and program evaluation.</p>
+            <p class="bio-copy secondary">During my undergraduate years at HUST, I worked with a bunch of geeks at <SiteLink href="https://hustunique.com/" icon="/images/site-icons/unique-studio.ico">Unique Studio</SiteLink>, a student-run community. We learned by building things together and following our interests across disciplines. I learned to start with the people we were building for and the problems they faced. That way of learning and working still shapes how I approach methodological problems.</p>
+          </div>
+        </details>
         <a class="quick-link" href="/publications/">Browse publications ↗</a>
       </section>
 
