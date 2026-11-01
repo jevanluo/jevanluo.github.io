@@ -10,6 +10,12 @@ export type SiteUpdate = {
 // Dates indicate when an update is announced on this website.
 export const updates: SiteUpdate[] = [
   {
+    date: '2026-10-31',
+    kind: 'Publication',
+    title: 'Accepted at NeurIPS 2027: Can We Trust Item Response Theory for AI Evaluation?',
+    href: 'https://arxiv.org/abs/2607.15190',
+  },
+  {
     date: '2026-10-06',
     kind: 'Publication',
     title: 'New paper in Psychometrika: within-person variation in response processes',

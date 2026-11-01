@@ -1,6 +1,10 @@
 // Static, curated citations. DOI-registry exports were checked against publisher pages and the site bibliography.
 export type Citation = { apa: string; bibtex: string };
 export const citations: Record<string, Citation> = {
+  "10.48550/arXiv.2607.15190": {
+    apa: "Jiang, H., Kwon, S., Luo, J., Xiao, Z., & Zhang, S. (2027). Can we trust item response theory for AI evaluation? In Advances in neural information processing systems (NeurIPS 2027) [Accepted for publication]. https://arxiv.org/abs/2607.15190",
+    bibtex: "@inproceedings{Jiang2027TrustIRT,\n  title={Can We Trust Item Response Theory for {AI} Evaluation?},\n  author={Jiang, Han and Kwon, Sunbeom and Luo, Jinwen and Xiao, Ziang and Zhang, Susu},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2027},\n  note={Accepted at NeurIPS 2027; preprint available on arXiv},\n  eprint={2607.15190},\n  archivePrefix={arXiv},\n  primaryClass={cs.AI},\n  url={https://arxiv.org/abs/2607.15190}\n}",
+  },
   "10.1016/j.tate.2026.105826": {
     apa: "Yang, Y., Zhang, G., Luo, J., & Kuang, S. (2026). Sustaining teachers’ epistemic agency in AI-supported instructional design: An exploratory design-based study of a conversational-function approach. Teaching and Teacher Education, 183, Article 105826. https://doi.org/10.1016/j.tate.2026.105826",
     bibtex: "@article{Yang2026EpistemicAgency,\n  title={Sustaining teachers' epistemic agency in {AI}-supported instructional design: An exploratory design-based study of a conversational-function approach},\n  author={Yang, Yunying and Zhang, Guigen and Luo, Jinwen and Kuang, Shanyun},\n  journal={Teaching and Teacher Education},\n  year={2026},\n  volume={183},\n  pages={105826},\n  doi={10.1016/j.tate.2026.105826}\n}",

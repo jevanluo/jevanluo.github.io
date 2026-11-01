@@ -8,6 +8,10 @@ const sorted = [...publications].sort((a, b) => b.year - a.year);
 const topics = [...new Set(sorted.flatMap((item) => item.topics))].sort();
 const years = [...new Set(sorted.map((item) => item.year))].sort((a, b) => b - a);
 const groups = years.map((year) => ({ year, items: sorted.filter((item) => item.year === year) }));
+const imageLicenseUrls = {
+  'CC BY 4.0': 'https://creativecommons.org/licenses/by/4.0/',
+  'CC BY-NC-SA 4.0': 'https://creativecommons.org/licenses/by-nc-sa/4.0/',
+};
 ---
 
 <BaseLayout title="Publications" description="Publications by Jinwen Luo." page="publications">
@@ -29,7 +33,7 @@ const groups = years.map((year) => ({ year, items: sorted.filter((item) => item.
                 <article class:list={['publication', { 'has-image': Boolean(item.image) }]} data-publication data-year={item.year} data-topics={item.topics.join('|')}>
                   {item.image && (
                     <figure class="publication-visual">
-                      <a href={item.image.src} target="_blank" rel="noopener noreferrer" aria-label={`View ${item.image.figure} from ${item.title}`} title={`${item.image.figure} from ${item.title}${item.image.license ? ` · ${item.image.license}: https://creativecommons.org/licenses/by/4.0/` : ''}`}>
+                      <a href={item.image.src} target="_blank" rel="noopener noreferrer" aria-label={`View ${item.image.figure} from ${item.title}`} title={`${item.image.figure} from ${item.title}${item.image.license ? ` · ${item.image.license}: ${imageLicenseUrls[item.image.license]}` : ''}`}>
                         <img class="publication-image" src={item.image.src} alt={item.image.alt} width="148" height="100" loading="lazy" decoding="async" />
                       </a>
                     </figure>

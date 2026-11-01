@@ -7,14 +7,28 @@ export type Publication = {
   doi?: string;
   pdf?: string;
   resources?: { label: string; url: string }[];
-  image?: { src: string; alt: string; figure: string; sourceUrl: string; license?: 'CC BY 4.0' };
+  image?: { src: string; alt: string; figure: string; sourceUrl: string; license?: 'CC BY 4.0' | 'CC BY-NC-SA 4.0' };
 };
 
 // Published works transcribed from CV_Overleaf/publications.tex (September 2026),
-// with new publications verified against publisher pages and DOI metadata.
-// See that folder's publication_checks.md for the source and verification limits.
-// In-press and under-review manuscripts are held back pending a current status check.
+// with new bibliographic metadata checked against publisher and arXiv records.
+// Author-confirmed acceptances are marked explicitly; under-review work is excluded.
+// See docs/publication-updates.md for new additions and verification limits.
 export const publications: Publication[] = [
+  {
+    title: 'Can We Trust Item Response Theory for AI Evaluation?',
+    authors: 'Jiang, H., Kwon, S., Luo, J., Xiao, Z., & Zhang, S.',
+    venue: 'NeurIPS 2027 (accepted)',
+    year: 2027,
+    topics: ['AI evaluation', 'Psychometrics'],
+    doi: '10.48550/arXiv.2607.15190',
+    pdf: 'https://arxiv.org/pdf/2607.15190',
+    resources: [
+      { label: 'arXiv', url: 'https://arxiv.org/abs/2607.15190' },
+      { label: 'Code', url: 'https://github.com/Salomeeeee/IRT-Simulation' },
+    ],
+    image: { src: '/images/publications/irt-ai-evaluation-figure1.png', alt: 'Figure comparing human testing with AI benchmarking: many examinees and few items versus few models and many items, followed by non-normal model ability distributions across six benchmarks', figure: 'Figure 1', sourceUrl: 'https://arxiv.org/html/2607.15190v3#S1.F1', license: 'CC BY-NC-SA 4.0' },
+  },
   {
     title: 'Sustaining teachers’ epistemic agency in AI-supported instructional design: An exploratory design-based study of a conversational-function approach',
     authors: 'Yang, Y., Zhang, G., Luo, J., & Kuang, S.',
